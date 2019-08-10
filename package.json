@@ -1,0 +1,31 @@
+{
+  "name": "react-native-wallet-cards",
+  "version": "1.0.0",
+  "description": "React Native Wallet Cards",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camilo5972/react-native-wallet-cards.git"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react-native-animatable": "^1.3.2"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "react-native": "*"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "Wallet",
+    "Cards",
+    "Animated"
+  ],
+  "author": "Camilo Henao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camilo5972/react-native-wallet-cards/issues"
+  },
+  "homepage": "https://github.com/camilo5972/react-native-wallet-cards#readme"
+}
