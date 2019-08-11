@@ -56,7 +56,7 @@ export default class CardsWallet extends Component {
                 style={[
                     this.styles.card,
                     this.props.showCardShadow && this.styles.cardShadow,
-                    { zIndex: index, top: index * this.cardSeparation, marginBottom: 0 /* marginBottomCards[index] */ }
+                    { zIndex: index, top: index * this.cardSeparation, marginBottom: 0 }
                 ]}>
                     <TouchableWithoutFeedback onPress={() => this.animateCard(index) }>
                         {item}
