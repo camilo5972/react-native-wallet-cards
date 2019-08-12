@@ -8,20 +8,25 @@ export default class StylesComponent {
                 flex: 1
             },
             container: {
-                margin: 5
+                padding: 5
             },
             scrollView: {
                 flexGrow: 1
             },
             card: {
-                height: props.cardHeight,
-                borderRadius: props.cardBorderRadius,
+                height: props.cardHeight
+            },
+            cardContent: {
                 backgroundColor: props.cardBgColor,
+                borderRadius: props.cardBorderRadius,
+                flex: 1
+            },
+            cardAndroid: {
+                elevation
             },
             cardShadow: {
-                elevation,
                 shadowOffset: { width: 0, height: 0.5 * elevation },
-                shadowOpacity: 0.3,
+                shadowOpacity: 0.2,
                 shadowRadius: 0.8 * elevation,
                 shadowColor: props.cardShadowColor
             }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as Animatable from 'react-native-animatable';
-import { ScrollView, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { ScrollView, SafeAreaView, TouchableWithoutFeedback, Platform, View } from 'react-native';
 import PropTypes from 'prop-types';
 import StylesComponent from './style';
 
@@ -58,9 +58,11 @@ export default class CardsWallet extends Component {
                     this.props.showCardShadow && this.styles.cardShadow,
                     { zIndex: index, top: index * this.cardSeparation, marginBottom: 0 }
                 ]}>
-                    <TouchableWithoutFeedback onPress={() => this.animateCard(index) }>
-                        {item}
-                    </TouchableWithoutFeedback>
+                    <View style={[this.styles.cardContent, Platform.OS === 'android' && this.styles.cardAndroid]}>
+                        <TouchableWithoutFeedback onPress={() => this.animateCard(index) }>
+                            {item}
+                        </TouchableWithoutFeedback>
+                    </View>
             </Animatable.View>
         );
     }
