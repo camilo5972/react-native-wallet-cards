@@ -8,7 +8,9 @@ React Native component for displaying cards with a wallet style.
 $ npm install --save react-native-wallet-cards
 ```
 
-| ![](http://ipfs-gw.everis.id/ipfs/QmPNzQmrrgVVuuYomKNQhLB8Y76DW7PCPaSN1Rc7DSmH88 =300x) | ![](http://ipfs-gw.everis.id/ipfs/Qme7rR4x4H1SHUWmQ22qNLS867LDaonwtRvTHRRm3Lmop9 =300x) |
+Compact view             |  Expand view
+:-------------------------:|:-------------------------:
+![](http://ipfs-gw.everis.id/ipfs/QmPNzQmrrgVVuuYomKNQhLB8Y76DW7PCPaSN1Rc7DSmH88?v=4&s=300)  |  ![](http://ipfs-gw.everis.id/ipfs/Qme7rR4x4H1SHUWmQ22qNLS867LDaonwtRvTHRRm3Lmop9?v=4&s=300)
 
 ```javascript
 import CardsWallet from 'react-native-wallet-cards';
