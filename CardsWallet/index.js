@@ -33,7 +33,8 @@ export default class CardsWallet extends Component {
     constructor(props) {
         super(props);
         // Get styles
-        this.styles = StylesComponent.getSheet(props);
+        const totalHeight = (props.data.length * props.cardHeight) + 20;
+        this.styles = StylesComponent.getSheet(props, totalHeight);
         // Set defaults
         this.cardSeparation = -props.cardHeight + props.cardSeparation;
         this.cardsRef = [];
@@ -93,9 +94,11 @@ export default class CardsWallet extends Component {
                 style={this.styles.scrollView}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={this.styles.container}>
-                {
-                    this.cards
-                }
+                    <View style={this.styles.scrollContainer}>
+                        {
+                            this.cards
+                        }
+                    </View>
             </ScrollView>
         </SafeAreaView>
         );
