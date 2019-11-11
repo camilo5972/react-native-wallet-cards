@@ -32,22 +32,32 @@ export default class CardsWallet extends Component {
 
     constructor(props) {
         super(props);
+        this.setProps();
+        this.cards = this.renderCards();
+    }
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.data === this.props.data) return false;
+        this.setProps();
+        this.cards = this.renderCards();
+        return true;
+    }
+
+    setProps() {
         // Get styles
-        const totalHeight = (props.data.length * props.cardHeight) + 20;
-        this.styles = StylesComponent.getSheet(props, totalHeight);
+        const totalHeight = (this.props.data.length * this.props.cardHeight) + 20;
+        this.styles = StylesComponent.getSheet(this.props, totalHeight);
         // Set defaults
-        this.cardSeparation = -props.cardHeight + props.cardSeparation;
+        this.cardSeparation = -this.props.cardHeight + this.props.cardSeparation;
         this.cardsRef = [];
         this.isCardDisplay = [];
         // Warnings
-        if (props.data.length === 0) {
+        if (this.props.data.length === 0) {
             console.warn('prop data has 0 elements and must be an array of components');
         }
-        this.cards = this.renderCards();
     }
 
     renderCards() {
-        return this.props.data.map((item, index) => 
+        return this.props.data.map((item, index) =>
             <Animatable.View
                 ref={(ref) => {
                     this.cardsRef[index] = ref;
@@ -59,11 +69,11 @@ export default class CardsWallet extends Component {
                     this.props.showCardShadow && this.styles.cardShadow,
                     { zIndex: index, top: index * this.cardSeparation, marginBottom: 0 }
                 ]}>
-                    <View style={[this.styles.cardContent, Platform.OS === 'android' && this.styles.cardAndroid]}>
-                        <TouchableWithoutFeedback onPress={() => this.animateCard(index) }>
-                            {item}
-                        </TouchableWithoutFeedback>
-                    </View>
+                <View style={[this.styles.cardContent, Platform.OS === 'android' && this.styles.cardAndroid]}>
+                    <TouchableWithoutFeedback onPress={() => this.animateCard(index)}>
+                        {item}
+                    </TouchableWithoutFeedback>
+                </View>
             </Animatable.View>
         );
     }
@@ -89,18 +99,18 @@ export default class CardsWallet extends Component {
 
     render() {
         return (
-        <SafeAreaView style={this.styles.safeArea}>
-            <ScrollView
-                style={this.styles.scrollView}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={this.styles.container}>
+            <SafeAreaView style={this.styles.safeArea}>
+                <ScrollView
+                    style={this.styles.scrollView}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={this.styles.container}>
                     <View style={this.styles.scrollContainer}>
                         {
                             this.cards
                         }
                     </View>
-            </ScrollView>
-        </SafeAreaView>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 
