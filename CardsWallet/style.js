@@ -1,14 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export default class StylesComponent {
-    static getSheet(props, totalHeight) {
+    static getSheet(props) {
         const elevation = 4;
         return StyleSheet.create({
             safeArea: {
                 flex: 1
             },
             container: {
-                height: totalHeight,
                 padding: 5
             },
             scrollView: {

@@ -30,6 +30,10 @@ export default class CardsWallet extends Component {
         easingTime: 300
     };
 
+    state = {
+        totalHeight: 0
+    };
+
     constructor(props) {
         super(props);
         this.setProps();
@@ -44,10 +48,10 @@ export default class CardsWallet extends Component {
 
     setProps() {
         // Get styles
-        const totalHeight = (this.props.data.length * this.props.cardHeight) + 20;
-        this.styles = StylesComponent.getSheet(this.props, totalHeight);
+        this.styles = StylesComponent.getSheet(this.props);
         // Set defaults
         this.cardSeparation = -this.props.cardHeight + this.props.cardSeparation;
+        this.state.totalHeight = (this.props.data.length * this.props.cardSeparation) + this.props.cardHeight;
         this.cardsRef = [];
         this.isCardDisplay = [];
         // Warnings
@@ -89,12 +93,23 @@ export default class CardsWallet extends Component {
             marginBottomEnd = 0;
         }
         this.isCardDisplay[index] = !this.isCardDisplay[index];
+        let totalActive = 1;
+        let totalInactive = 0;
+        if (this.isCardDisplay.length !== (index + 1)) {
+            for (let index in this.isCardDisplay) {
+                totalActive+= this.isCardDisplay[index] ? 1 : 0;
+                totalInactive+= !this.isCardDisplay[index] ? 1 : 0;
+            }
+            const newTotalHeight = totalActive * this.props.cardHeight + (this.props.cardSeparation * totalInactive);
+            this.setState({ totalHeight: newTotalHeight });
+        }
         this.cardsRef[index].transition(
             { marginBottom: marginBottomStart },
             { marginBottom: marginBottomEnd },
             this.props.easingTime,
             this.props.cardEasing
         );
+        this.forceUpdate();
     }
 
     render() {
@@ -103,7 +118,7 @@ export default class CardsWallet extends Component {
                 <ScrollView
                     style={this.styles.scrollView}
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={this.styles.container}>
+                    contentContainerStyle={[this.styles.container, { height: this.state.totalHeight }]}>
                     <View style={this.styles.scrollContainer}>
                         {
                             this.cards
